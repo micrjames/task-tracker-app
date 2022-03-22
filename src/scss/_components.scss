@@ -1,0 +1,21 @@
+%transition-all {
+	transition: all 0.5s ease-in;
+}
+
+%flex {
+	display: flex;
+}
+
+%flex-apart {
+	justify-content: space-between;
+	align-items: center;
+}
+%flex-around {
+	justify-content: space-around;
+	align-items: center;
+}
+
+%flex-center {
+	justify-content: center;
+	align-items: center;
+}

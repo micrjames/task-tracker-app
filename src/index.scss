@@ -1,0 +1,230 @@
+@use './scss/components';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+@import './scss/res-mq', './scss/container-box', './scss/res-mq', './scss/button';
+
+$width: 100vw;
+$task-bg-color: #f4f4f4;
+$about-margin-top: 5vh;
+$about-li-space: 1.5rem;
+$about-li-padding: .5rem;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.btn {
+	@include button(1rem, 5px 10px, 0);
+	width: 20%;
+
+	@include sm {
+		@include button(1.25rem, 5px 10px, 5px);
+		width: 25%;
+	}
+	@include md {
+		@include button(1.25rem, 10px 15px, 5px);
+		width: 15%;
+	}
+	@include lg {
+		@include button(1.25rem, 10px 15px, 5px);
+		width: 10%;
+	}
+}
+.btn:focus {
+}
+.btn:active {	
+	transform: scale(0.95);
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+
+	.container {
+		@include container-box($width, 100vh, transparent, 0, 0);
+		.header {
+			@include container-box($width, 5vh, transparent, 0, 0);
+			margin: 20px 10px;
+			@extend %flex;
+			@extend %flex-apart;
+
+			font-size: 1rem;
+			@include sm {
+				font-size: .85rem;
+				margin-bottom: 20px;
+			}
+			@include md {
+				font-size: 1.5rem;
+				margin-bottom: 20px;
+			}
+		}
+
+		.home {
+			@include container-box($width, 80vh, transparent, 0, 0);
+			.form-container {
+				border: 1px solid black;
+				border-radius: 10px;
+				padding: 15px;
+				margin: 10px;
+				.add-form {
+					margin: 0 15px 15px 15px;
+
+					.form-control {
+						margin: 2px 0 5px 0;
+
+						label {
+							display: block;
+						}
+
+						input {
+							width: 95%;
+							height: 40px;
+							margin: 5px;
+							padding: 3px 7px;
+							font-size: 17px;
+							caret-color: #f4f4f4;
+							caret-color: darken(#f4f4f4,50);
+						}
+						input:focus, input:active {
+							caret-color: darken(#f4f4f4,50);
+							color: darken(#f4f4f4,50);
+							outline: none;
+						}
+						.input-error{
+							border: 2px solid red;
+						}
+						.input-error::placeholder {
+							color: red;
+						}
+						.input-prompt {
+							font-family: 'Prompt', sans-serif;
+							font-style: italic;
+							font-size: .85rem;
+							color: darken(#f4f4f4, 40);
+							margin: 0 0 0 10px;
+						}
+						.error {
+							color: red;
+						}	
+					}
+
+					.form-control-check {
+						display: inline-flex;
+						align-items: center;
+						justify-content: center;
+
+						padding: 0 10px;
+						width: 100%;
+
+						font-size: 1rem;
+
+						label {
+							flex: 2;
+						}
+						input {
+							flex: 1;
+							height: 15px;
+						}	
+					}
+
+					.btn-block {
+						display:block;
+						font-size: 1.1rem;
+						margin: 0 0 5px 0;
+
+						width: 100%;
+					}
+					.submit-error {
+						font-family: 'Prompt', sans-serif;
+						font-style: italic;
+						font-size: .85rem;
+						color: red; 
+						margin-left: 10px;
+					}
+				}
+			}
+			.form-container-error {
+				border-color: red;
+			}
+			#tasks {
+				padding-bottom: 10px;
+				.task {
+					margin: 0 10px;
+					padding: 10px 20px;
+					cursor: pointer;
+					font-size: .90rem;
+					background: $task-bg-color;
+
+					@include sm {
+						margin: 5px;
+					}
+					@include md {
+					}
+
+					h3 {
+						@extend %flex;
+						@extend %flex-apart;
+
+						.icon {
+							color: red;
+						}
+					}
+
+				}
+				.task.reminder {
+					border-left: 5px solid green;
+				}	
+				.task:nth-child(2n-1) {
+					background: darken($task-bg-color, 15);
+					@include sm {
+						background: $task-bg-color;
+					}
+				}
+			}
+			#no-task {
+				padding: 0 10px;
+				color: red;
+			}
+		}
+		.about {
+			@include container-box($width, 80vh, transparent, 0, 0);
+
+			@extend %flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center; 
+
+			font-size: 1rem;	
+
+			h2 {
+			}
+			ul {
+				margin-top: $about-margin-top;
+				font-family: 'Prompt', sans-serif;
+
+				li {
+					@include md {
+						list-style-type: square;
+						line-height: $about-li-space;
+						padding: $about-li-padding;
+					}
+				}
+				li:first-child {
+					text-decoration: underline;
+					list-style-type: none;
+				}
+			}
+		}
+		#about-link {
+			padding: 10px;
+			background: darken($task-bg-color, 5);
+
+			#link {
+				font-size: .75rem;
+				@include container-box($width, 5vh, transparent, 0, 0);
+				color: black;
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+@mixin container-box($size-width, $size-height, $color, $space-in-out, $border-radius) {
+	height: $size-height;
+	max-width: $size-width;
+
+	margin: $space-in-out auto;
+	padding: $space-in-out;
+
+	border: 1px solid $color;
+	border-radius: $border-radius;
+} 
